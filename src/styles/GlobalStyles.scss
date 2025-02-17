@@ -1,0 +1,53 @@
+:root {
+    --orange: #d96c2c;
+    --white: #ffffff;
+    --black: #000000;
+    --grey: #f3f3f3;
+    --gray: #2f2f2f;
+}
+
+.layout-padding {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+.layout {
+    width: 80%;
+    margin: 0 auto;
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-space {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+p,
+a {
+    color: var(--grey);
+}
+@media (max-width: 1024px) {
+}
+//xl
+@media (max-width: 1280px) {
+}
+//lg
+@media (max-width: 1024px) {
+}
+//md
+@media (max-width: 768px) {
+    .layout,
+    .layout-padding {
+        width: 90%;
+    }
+}
+// sm
+@media (max-width: 640px) {
+    .layout,
+    .layout-padding {
+        width: 95%;
+    }
+}

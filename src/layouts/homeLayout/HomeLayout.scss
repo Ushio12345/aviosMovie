@@ -1,0 +1,63 @@
+.homeLayout {
+    .footer-homepage {
+        color: var(--grey);
+        background-color: var(--black);
+        a {
+            &:hover p {
+                color: var(--orange);
+            }
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+        h4 {
+            color: var(--orange);
+            font-size: 25px;
+        }
+        .footer-bot {
+            a {
+                position: relative;
+                &::before {
+                    background-color: var(--orange);
+                    position: absolute;
+                    content: "";
+                    width: 0;
+                    height: 3px;
+                    bottom: -10px;
+                    left: 0;
+                }
+                &:hover::before {
+                    width: 100px;
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+    .header {
+        .menu {
+            li {
+                a {
+                    color: white;
+                    position: relative;
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        bottom: -10px;
+                        left: 0;
+                        width: 0;
+                        height: 3px;
+                        background-color: var(--orange);
+                    }
+                }
+                a.active {
+                    color: var(--orange);
+                    font-weight: 700;
+                }
+                a.active::before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
