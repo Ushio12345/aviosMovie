@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import Button from "../../../components/button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "./LoginService";
+import { validateForm } from "../schema/ValidateForm";
 
 export default function Register() {
     const [formData, setFormData] = useState({
         taiKhoan: "",
         hoTen: "",
         matKhau: "",
-
         email: "",
         soDt: "",
     });
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errors, setErrors] = useState({});
     const nagivator = useNavigate();
 
     const handleChange = (e) => {
@@ -24,19 +26,28 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //    console.log("Dữ liệu gửi đi:", formData);
 
-        try {
-            let response = await register(formData);
+        const validateData = validateForm(formData, confirmPassword);
+        setErrors(validateData);
 
-            alert("Đăng ký thành công, chuyển đến trang đăng nhập!");
-            nagivator("/login");
-        } catch (error) {
-            console.error("Lỗi đăng ký:", error);
-            alert("Đăng ký thất bại. Tài khoản đã tồn tại hoặc có lỗi server!");
+        if (Object.keys(validateData).length === 0) {
+            try {
+                const response = await register(formData);
+                // console.log("Phản hồi từ server register:", response.message);
+
+                if (response) {
+                    console.log(response);
+                    alert("Đăng kí thành công! Chuyển đến trang đăng nhập.");
+                    nagivator("/login");
+                }
+            } catch (error) {
+                console.error("Đăng kí thất bại:", error);
+                alert("Tài khoản đã tồn tại hoặc lỗi server!");
+            }
+        } else {
+            console.log("Có lỗi trong form, không gửi request.");
         }
     };
-
     return (
         <div>
             <section className="bg-gray-50 dark:bg-gray-900">
@@ -60,8 +71,8 @@ export default function Register() {
                                             onChange={handleChange}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Nhập tài khoản"
-                                            required
                                         />
+                                        <p className="text-xs text-red-400 italic">{errors.taiKhoan}</p>
                                     </div>
 
                                     <div>
@@ -76,12 +87,12 @@ export default function Register() {
                                             onChange={handleChange}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="Nhập họ tên"
-                                            required
                                         />
+                                        <p className="text-xs text-red-400 italic">{errors.hoTen}</p>
                                     </div>
                                 </div>
 
-                                <div className=" gap-1">
+                                <div className=" flex gap-1">
                                     <div>
                                         <label htmlFor="matKhau" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                             Mật khẩu
@@ -94,25 +105,25 @@ export default function Register() {
                                             onChange={handleChange}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="••••••••"
-                                            required
                                         />
+                                        <p className="text-xs text-red-400 italic">{errors.matKhau}</p>
                                     </div>
 
-                                    {/* <div>
+                                    <div>
                                         <label htmlFor="confirmMatKhau" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                             Xác nhận mật khẩu
                                         </label>
                                         <input
                                             type="password"
-                                            name="confirmMatKhau"
-                                            id="confirmMatKhau"
-                                            value={formData.confirmMatKhau}
-                                            onChange={handleChange}
+                                            name="confirmPassword"
+                                            id="confirmPassword"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="••••••••"
-                                            required
                                         />
-                                    </div> */}
+                                        <p className="text-xs text-red-400 italic">{errors.confirmPassword}</p>
+                                    </div>
                                 </div>
 
                                 <div>
@@ -127,8 +138,8 @@ export default function Register() {
                                         onChange={handleChange}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="example@gmail.com"
-                                        required
                                     />
+                                    <p className="text-xs text-red-400 italic">{errors.email}</p>
                                 </div>
 
                                 <div>
@@ -143,8 +154,8 @@ export default function Register() {
                                         onChange={handleChange}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="0193738473"
-                                        required
                                     />
+                                    <p className="text-xs text-red-400 italic">{errors.soDt}</p>
                                 </div>
 
                                 {/* <div className="flex items-start">
@@ -157,7 +168,7 @@ export default function Register() {
                                             checked={formData.termsAccepted}
                                             onChange={handleChange}
                                             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                            required
+                                            
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">

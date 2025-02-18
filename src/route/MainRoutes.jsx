@@ -5,8 +5,9 @@ import ManagerLayout from "../layouts/managerLayout/ManagerLayout";
 import { Route, Routes } from "react-router-dom";
 import HomeLayout from "../layouts/homeLayout/HomeLayout";
 import Loading from "../components/loading/Loading";
-import Login from "../pages/Auth/Login";
+
 import Register from "../pages/Auth/services/Register";
+import Login from "../pages/Auth/Login";
 
 export default function MainRoutes() {
     return (

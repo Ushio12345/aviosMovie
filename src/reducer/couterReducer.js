@@ -2,6 +2,7 @@ import { ADD, GET } from "../action/types";
 
 const INITIAL_STATE = {
     users: [],
+    userAuth: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

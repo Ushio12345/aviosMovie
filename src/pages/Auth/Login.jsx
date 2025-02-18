@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { validateForm } from "./schema/ValidateForm";
 import { login } from "./services/LoginService";
 import Button from "../../components/button/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { getData } from "../../action/actions";
 
-export default function Login() {
+function Login({ authRedux, setAuthRedux }) {
     const [user, setUser] = useState({
         taiKhoan: "",
         matKhau: "",
     });
+    const [errors, setErrors] = useState({});
     const navigator = useNavigate();
 
     const handleChange = (e) => {
@@ -20,23 +24,27 @@ export default function Login() {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const response = await login(user);
-            if (response) {
-                // console.log(response.data.content.accessToken);
-                const token = response.data.content.accessToken;
-                localStorage.setItem("accessToken", token);
-                navigator("/");
+        const validateData = validateForm(user, "");
+        setErrors(validateData);
+        if (Object.keys(validateData).length !== 0) {
+            try {
+                const response = await login(user);
+                if (response) {
+                    // console.log(response.data.content.accessToken);
+                    const token = response.data.content;
+                    localStorage.setItem("accessToken", JSON.stringify({ token }));
+                    setAuthRedux(JSON.stringify(token));
+                    navigator("/");
+                }
+            } catch (error) {
+                console.error("Đăng nhập thất bại", error);
+                alert("Sai tên tài khoản hoặc mật khẩu!");
             }
-        } catch (error) {
-            console.error("Đăng nhập thất bại", error);
-            alert("Sai tên tài khoản hoặc mật khẩu!");
+        } else {
+            console.log("Có lỗi trong form, không gửi request.");
         }
-        console.log("====================================");
-        console.log("click");
-        console.log("====================================");
     };
+    console.log("auth", authRedux);
 
     return (
         <div className="">
@@ -62,8 +70,9 @@ export default function Login() {
                                         onChange={handleChange}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Nhập tên tài khoản"
-                                        required
                                     />
+                                    <p className="text-red-400 italic text-sm">{errors.taiKhoan}</p>
+                                    {authRedux}
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -77,8 +86,8 @@ export default function Login() {
                                         value={user.matKhau}
                                         placeholder="••••••••"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required
                                     />
+                                    <p className="text-red-400 italic text-sm">{errors.matKhau}</p>
                                 </div>
                                 {/* <div className="flex items-center justify-between">
                                     <div className="flex items-start">
@@ -88,7 +97,7 @@ export default function Login() {
                                                 aria-describedby="remember"
                                                 type="checkbox"
                                                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                                required
+                                                
                                             />
                                         </div>
                                         <div className="ml-3 text-sm">
@@ -102,7 +111,7 @@ export default function Login() {
                                     </a>
                                 </div> */}
                                 <Button type="submit" color="white" bgColor="var(--orange)" width="100%" height="40px">
-                                    Sign in
+                                    Đăng nhập
                                 </Button>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Bạn chưa có tài khoản?
@@ -118,3 +127,14 @@ export default function Login() {
         </div>
     );
 }
+const mapStateToProps = (state) => {
+    return {
+        authRedux: state.counter.authUser,
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setAuthRedux: (data) => dispatch(getData(data)),
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
