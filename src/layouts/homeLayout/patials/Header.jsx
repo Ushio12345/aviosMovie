@@ -24,7 +24,7 @@ export default function Header() {
     }, []);
 
     const showSubMenu = () => {
-        Collapse.show();
+        Collapse.show;
     };
 
     return (
@@ -45,7 +45,11 @@ export default function Header() {
                             onClick={showSubMenu}
                         >
                             <span className="sr-only">Open user menu</span>
-                            <img className="w-8 h-8 rounded-full" src="" alt="user photo" />
+                            <img
+                                className="w-8 h-8 rounded-full"
+                                src="https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.pngnpm"
+                                alt="user photo"
+                            />
                         </button>
                         <Button onClick={changePage} color="white" bgColor="var(--orange)" height="40px" width="100px" hoverColor="var(--orange)">
                             Đăng nhập

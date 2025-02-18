@@ -1,8 +1,10 @@
 import { ADD, GET } from "../action/types";
 
+const getDataToken = JSON.parse(localStorage.getItem("accessToken")) || null;
+
 const INITIAL_STATE = {
     users: [],
-    userAuth: [],
+    userAuth: null,
 };
 
 const reducer = (state = INITIAL_STATE, action) => {

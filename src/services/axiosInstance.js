@@ -29,17 +29,15 @@ axiosIntance.interceptors.request.use(
 // Add a response interceptor
 axiosIntance.interceptors.response.use(
     (response) => {
-        //const url = response.config.url;
-
-        //setLocalStorageToken(token);
         return response;
     },
     (error) => {
-        if (error.response.status === 401) {
-            //(`unauthorized :)`);
-            //localStorage.removeItem("persist:root");
-            //removeLocalStorageToken
-            //window.location.href = "/login";
+        if (error.response && error.response.status === 401) {
+            console.error("Unauthorized: 401 - Phiên đăng nhập đã hết hạn");
+            localStorage.removeItem("accessToken");
+            window.location.href = "/login";
+        } else {
+            console.log("Lỗi API:", error);
         }
         return Promise.reject(error);
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.scss";
 import { validateForm } from "./schema/ValidateForm";
 import { login } from "./services/LoginService";
@@ -22,6 +22,13 @@ function Login({ authRedux, setAuthRedux }) {
             [name]: value,
         }));
     };
+    // useEffect(() => {
+    //     console.log("auth redux", authRedux);
+    //     const data = localStorage.getItem("accessToken");
+    //     // console.log("data token", JSON.parse(data));
+    //     getData(JSON.parse(data));
+    // }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const validateData = validateForm(user, "");
@@ -32,8 +39,7 @@ function Login({ authRedux, setAuthRedux }) {
                 if (response) {
                     // console.log(response.data.content.accessToken);
                     const token = response.data.content;
-                    localStorage.setItem("accessToken", JSON.stringify({ token }));
-                    setAuthRedux(JSON.stringify(token));
+                    const dataSave = localStorage.setItem("accessToken", JSON.stringify({ token }));
                     navigator("/");
                 }
             } catch (error) {
@@ -44,7 +50,6 @@ function Login({ authRedux, setAuthRedux }) {
             console.log("Có lỗi trong form, không gửi request.");
         }
     };
-    console.log("auth", authRedux);
 
     return (
         <div className="">
@@ -129,7 +134,7 @@ function Login({ authRedux, setAuthRedux }) {
 }
 const mapStateToProps = (state) => {
     return {
-        authRedux: state.counter.authUser,
+        authRedux: state.counter.userAuth,
     };
 };
 const mapDispatchToProps = (dispatch) => {
