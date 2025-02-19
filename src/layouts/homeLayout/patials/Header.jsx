@@ -28,7 +28,7 @@ export default function Header() {
     };
 
     return (
-        <div className="header fixed top-0 right-0 z-10 w-full">
+        <div className="header fixed top-0 right-0 z-50 w-full">
             <nav className={`border-gray-200 dark:bg-gray-900 ${isScrolled ? "bg-black" : "bg-transparent"}`}>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to={"/"} className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -118,7 +118,6 @@ export default function Header() {
                                 <NavLink
                                     to="/"
                                     className={({ isActive }) => {
-                                        console.log("Is Active:", isActive);
                                         return isActive
                                             ? "active block py-2 px-3  md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                                             : "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
@@ -132,7 +131,6 @@ export default function Header() {
                                 <NavLink
                                     to="/about"
                                     className={({ isActive }) => {
-                                        console.log("Is Active:", isActive);
                                         return isActive
                                             ? "active block py-2 px-3  md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                                             : "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
@@ -146,7 +144,6 @@ export default function Header() {
                                 <NavLink
                                     to="/services"
                                     className={({ isActive }) => {
-                                        console.log("Is Active:", isActive);
                                         return isActive
                                             ? "active block py-2 px-3  md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                                             : "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
@@ -160,7 +157,6 @@ export default function Header() {
                                 <NavLink
                                     to="/pricing"
                                     className={({ isActive }) => {
-                                        console.log("Is Active:", isActive);
                                         return isActive
                                             ? "active block py-2 px-3  md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                                             : "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
@@ -174,7 +170,6 @@ export default function Header() {
                                 <NavLink
                                     to="/contact"
                                     className={({ isActive }) => {
-                                        console.log("Is Active:", isActive);
                                         return isActive
                                             ? "active block py-2 px-3  md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                                             : "block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";

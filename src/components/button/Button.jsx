@@ -25,8 +25,8 @@ export default function Button({
                 borderRadius: borderRadius,
                 width: width,
                 height: height,
-                // padding: "10px 20px",
-                fontSize: "16px",
+                padding: "0px 10px",
+                fontSize: "12px",
                 cursor: "pointer",
                 transition: "all 0.3s ease-in-out",
             }}

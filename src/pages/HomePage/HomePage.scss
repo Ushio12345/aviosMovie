@@ -3,7 +3,7 @@
     .intro-item {
         position: relative;
         background-color: rgb(0, 0, 0);
-        z-index: 20;
+        z-index: 0;
         padding: 30px;
         h4 {
             font-size: 30px;
@@ -29,7 +29,7 @@
 }
 .section-1 {
     position: relative;
-    background-image: url("../../assets/images/big-bg-film.png");
+
     background-size: cover;
     height: 100%;
     .overlay1 {
@@ -44,4 +44,12 @@
 // film
 .slick-dots li button:before {
     color: red !important;
+}
+// features-film
+
+.features-film {
+    .features-film-item-img:hover img {
+        transform: translateY(20px);
+        transition: 0.8s ease-in-out;
+    }
 }

@@ -1,8 +1,8 @@
 .loading {
     width: 100vw;
     height: 100vh;
-    background-color: rgba(215, 214, 214, 0.063);
-    position: relative;
+    background-color: rgba(215, 214, 214, 0.71);
+    position: fixed;
     z-index: 9999;
     top: 0;
     left: 50%;
@@ -26,6 +26,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    font-size: 30px;
 }
 
 .outer {

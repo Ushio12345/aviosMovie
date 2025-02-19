@@ -13,7 +13,7 @@ export default function IntroItems() {
                         <h4>Liên hoan phim sắp tới</h4>
                     </div>
 
-                    <div className="  p-5 flex-center icon-cycle " style={{ backgroundColor: "var(--orange)" }}>
+                    <div className="  p-5 flex-center icon-cycle  img-intro-item " style={{ backgroundColor: "var(--orange)" }}>
                         <img className="w-[70px] h-[70px]" src={MaskImg} alt="Icon" />
                     </div>
                     <div className="overlay"></div>
@@ -24,7 +24,7 @@ export default function IntroItems() {
                         <h4>Xem phim Giải thưởng</h4>
                     </div>
 
-                    <div className="  p-5 flex-center icon-cycle " style={{ backgroundColor: "var(--orange)" }}>
+                    <div className="  p-5 flex-center icon-cycle  img-intro-item " style={{ backgroundColor: "var(--orange)" }}>
                         <img className="w-[70px] h-[70px]" src={Award} alt="Icon" />
                     </div>
                     <div className="overlay"></div>
@@ -35,7 +35,7 @@ export default function IntroItems() {
                         <h4>Comedy TV Shows</h4>
                     </div>
 
-                    <div className="  p-5 flex-center icon-cycle " style={{ backgroundColor: "var(--orange)" }}>
+                    <div className="  p-5 flex-center icon-cycle  img-intro-item " style={{ backgroundColor: "var(--orange)" }}>
                         <img className="w-[70px] h-[70px]" src={Comedy} alt="Icon" />
                     </div>
                     <div className="overlay"></div>
