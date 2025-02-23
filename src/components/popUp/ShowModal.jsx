@@ -1,15 +1,19 @@
 import React from "react";
 import { Button, Dialog, DialogHeader, DialogBody, DialogFooter, IconButton } from "@material-tailwind/react";
 
-const CustomDialog = ({ open, children, handleOpen, title, body, confirmText, cancelText, showFooter = true, size = "xl" }) => {
+const CustomDialog = ({ open, children, handleOpen, title, body, confirmText, cancelText, showFooter = true, size = "xl", showX = true }) => {
     return (
-        <Dialog open={open} handler={handleOpen} className="relative" size={size}>
+        <Dialog open={open} handler={handleOpen} className="" size={size}>
             {/* Nút X để đóng Dialog */}
-            <div>
-                <IconButton variant="text" color="gray" onClick={handleOpen} className="items-center absolute top-2 right-2">
-                    ✕
-                </IconButton>
-            </div>
+
+            {showX && (
+                <div className="flex justify-end absolute right-0">
+                    <IconButton variant="text" color="gray" className=" block" onClick={handleOpen}>
+                        ✕
+                    </IconButton>
+                </div>
+            )}
+
             {/* Tiêu đề */}
             <DialogHeader className="flex justify-between items-center">
                 <div>{title}</div>

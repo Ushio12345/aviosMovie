@@ -44,7 +44,7 @@ export default function Footer() {
                             <div>
                                 {" "}
                                 <h3 className="mb-5">Buy movie tickets easily with Aovis system nationwide</h3>
-                                <Button bgColor="var(--orange)" color="white" width="50%" height="40px">
+                                <Button bgColor="var(--orange)" color="white" width="50%" height="40px" hoverColor="var(--orange)">
                                     GET YOUR TICKET
                                 </Button>
                             </div>
@@ -82,7 +82,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-700 text-center py-4">© Copyright 2023 by Ovatheme.com</div>
+            <div className="bg-gray-900 text-center py-4">© Copyright 2023 by Ovatheme.com</div>
         </div>
     );
 }

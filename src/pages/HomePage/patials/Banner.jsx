@@ -22,7 +22,7 @@ export default function Banner() {
     };
 
     return (
-        <div className="w-full h-screen banner">
+        <div className="w-full  banner">
             <Carousel
                 className="rounded-xl w-full h-full"
                 navigation={({ setActiveIndex, activeIndex, length }) => (

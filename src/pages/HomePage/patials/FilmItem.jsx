@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Loading from "../../../components/loading/Loading";
+import { Link } from "react-router-dom";
 export default function FilmItem({ dataFilm, isLoading }) {
     // console.log(isLoading);
 
@@ -64,7 +65,8 @@ export default function FilmItem({ dataFilm, isLoading }) {
                 <Slider {...settings}>
                     {dataFilm.map((f) => (
                         <div key={f.maPhim} className="film-item relative p-3">
-                            <div
+                            <Link
+                                to={`/detail-film/${f.maPhim}`}
                                 className="film-content flex flex-col gap-3 p-4 text-white"
                                 style={{
                                     backgroundImage: `url(${f.hinhAnh})`,
@@ -75,17 +77,17 @@ export default function FilmItem({ dataFilm, isLoading }) {
                                 }}
                             >
                                 <div className="status flex items-center gap-2">
-                                    {f.hot && <p className="bg-red-500 text-white p-1 text-xs rounded-lg">Hot</p>}
+                                    {f.hot && <p className="bg-red-500 text-white p-1 text-xs rounded-lg"> Hot</p>}
                                     {f.dangChieu && <p className="bg-green-500 text-white p-1 text-xs rounded-lg">Đang chiếu</p>}
                                     {f.sapChieu && <p className="bg-yellow-500 text-white p-1 text-xs rounded-lg">Sắp chiếu</p>}
                                 </div>
                                 <div className="mt-auto">
                                     <strong className="text-xl">{f.tenPhim}</strong>
                                 </div>
-                                <Button bgColor="white" color="black" width="55%" height="40px">
+                                <Button bgColor="white" color="black" width="55%" height="40px" hoverColor="" hoverBgColor="var(--orange">
                                     Đặt vé ngay
                                 </Button>
-                            </div>
+                            </Link>
                         </div>
                     ))}
                 </Slider>

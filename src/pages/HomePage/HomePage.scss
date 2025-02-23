@@ -53,3 +53,17 @@
         transition: 0.8s ease-in-out;
     }
 }
+
+// sub-banner
+.sub-banner {
+    background-image: url("../../assets/images/banner21.jpg");
+    background-size: cover;
+    min-height: 80vh;
+
+    h4 {
+        &:hover {
+            color: var(--orange);
+            cursor: pointer;
+        }
+    }
+}

@@ -8,9 +8,16 @@ import Loading from "../../components/loading/Loading";
 import FeaturedMovies from "./patials/FeaturedMovies";
 import bgFilm from "../../assets/images/big-bg-film.png";
 import seatImg from "../../assets/images/seat-bg.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setFlimRedux } from "../../action/actions";
+
 export default function HomePage() {
     const [loading, setLoading] = useState(true);
-    const [listFilm, setListFilm] = useState([]);
+    // const [listFilm, setListFilm] = useState([]);
+    const listFilm = useSelector((state) => state.counter.listFilm);
+    // console.log("data", listFilm);
+
+    const dispatch = useDispatch();
     useEffect(() => {
         getAllFilm();
     }, []);
@@ -18,8 +25,9 @@ export default function HomePage() {
         setLoading(true);
         try {
             const res = await getFilm();
-            console.log("data film", res);
-            setListFilm(res.data.content);
+            // console.log("data film", res);
+            // setListFilm(res.data.content);
+            dispatch(setFlimRedux(res.data.content));
         } catch (error) {
             console.log("Không lấy đươc api film", error);
         } finally {

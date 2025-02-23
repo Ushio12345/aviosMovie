@@ -4,14 +4,20 @@ import { validateForm } from "./schema/ValidateForm";
 import { login } from "./services/LoginService";
 import Button from "../../components/button/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { getData } from "../../action/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserAuth } from "../../action/actions";
+import { jwtDecode } from "jwt-decode";
+import { useAlert } from "../../hooks/AlertContext";
 
-function Login({ authRedux, setAuthRedux }) {
+function Login() {
+    const dispatch = useDispatch();
+    const showAlert = useAlert();
+    const userA = useSelector((state) => state.counter.userAuth);
     const [user, setUser] = useState({
         taiKhoan: "",
         matKhau: "",
     });
+
     const [errors, setErrors] = useState({});
     const navigator = useNavigate();
 
@@ -28,26 +34,33 @@ function Login({ authRedux, setAuthRedux }) {
     //     // console.log("data token", JSON.parse(data));
     //     getData(JSON.parse(data));
     // }, []);
+    // console.log("aaa", userA);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validateData = validateForm(user, "");
+        const validateData = validateForm(user);
         setErrors(validateData);
-        if (Object.keys(validateData).length !== 0) {
-            try {
-                const response = await login(user);
-                if (response) {
-                    // console.log(response.data.content.accessToken);
-                    const token = response.data.content;
-                    const dataSave = localStorage.setItem("accessToken", JSON.stringify({ token }));
-                    navigator("/");
-                }
-            } catch (error) {
-                console.error("Đăng nhập thất bại", error);
-                alert("Sai tên tài khoản hoặc mật khẩu!");
+
+        // Chỉ gửi nếu không có lỗi
+        try {
+            const response = await login(user);
+            if (response) {
+                const token = response.data.content.accessToken;
+                localStorage.setItem("accessToken", JSON.stringify({ token }));
+                const decodeUser = jwtDecode(token);
+                const userAuthData = {
+                    taiKhoan: decodeUser["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+                    email: decodeUser["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"],
+                    role: decodeUser["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
+                };
+                dispatch(setUserAuth(userAuthData));
+                showAlert("Đăng nhập thành công!", "success", "Thành công", { vertical: "top", horizontal: "right" });
+
+                navigator("/");
             }
-        } else {
-            console.log("Có lỗi trong form, không gửi request.");
+        } catch (error) {
+            console.error("Đăng nhập thất bại", error);
+            showAlert("Sai tên tài khoản hoặc mật khẩu!", "error", "Thất bại!", { vertical: "top", horizontal: "right" });
         }
     };
 
@@ -75,9 +88,9 @@ function Login({ authRedux, setAuthRedux }) {
                                         onChange={handleChange}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Nhập tên tài khoản"
+                                        required
                                     />
                                     <p className="text-red-400 italic text-sm">{errors.taiKhoan}</p>
-                                    {authRedux}
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -91,6 +104,7 @@ function Login({ authRedux, setAuthRedux }) {
                                         value={user.matKhau}
                                         placeholder="••••••••"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required
                                     />
                                     <p className="text-red-400 italic text-sm">{errors.matKhau}</p>
                                 </div>
@@ -132,14 +146,14 @@ function Login({ authRedux, setAuthRedux }) {
         </div>
     );
 }
-const mapStateToProps = (state) => {
-    return {
-        authRedux: state.counter.userAuth,
-    };
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setAuthRedux: (data) => dispatch(getData(data)),
-    };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+// const mapStateToProps = (state) => {
+//     return {
+//         authRedux: state.counter.userAuth,
+//     };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         setAuthRedux: (data) => dispatch(getData(data)),
+//     };
+// };
+export default Login;

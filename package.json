@@ -17,8 +17,10 @@
         "@mui/material": "^6.4.4",
         "@redux-devtools/extension": "^3.3.0",
         "axios": "^1.7.9",
+        "date-fns": "^4.1.0",
         "flowbite": "^3.1.2",
         "flowbite-react": "^0.10.2",
+        "jwt-decode": "^4.0.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-paginate": "^8.3.0",
@@ -26,6 +28,7 @@
         "react-router-dom": "^7.1.5",
         "react-slick": "^0.30.3",
         "redux": "^5.0.1",
+        "redux-persist": "^6.0.0",
         "sass": "^1.85.0",
         "slick-carousel": "^1.8.1"
     },

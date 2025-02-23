@@ -1,0 +1,25 @@
+.category {
+    position: absolute;
+    top: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px;
+    background-color: white;
+    width: 200px;
+    border-radius: 12px;
+    li {
+        padding: 10px 0;
+        border-bottom: 2px solid rgba(128, 128, 128, 0.263);
+        a {
+            color: black !important;
+            &:hover {
+                color: var(--orange) !important;
+            }
+            &.active {
+                color: orangered !important;
+            }
+            &.active::before {
+                width: 0% !important;
+            }
+        }
+    }
+}

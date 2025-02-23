@@ -1,6 +1,17 @@
 import { createStore } from "redux";
 import rootReducer from "../reducer/rootReducer";
-// import { composeWithDevTools } from "@redux-devtools/extension/lib/types/logOnly";
-const store = createStore(rootReducer);
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-export default store;
+// Cấu hình redux-persist
+const persistConfig = {
+    key: "root",
+    storage, // Lưu vào localStorage
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer);
+
+const persistor = persistStore(store);
+
+export { store, persistor };

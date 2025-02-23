@@ -1,0 +1,23 @@
+.user-dropdown {
+    span {
+        // background-color: red;
+        padding: 0;
+        background-color: transparent !important;
+        &:hover {
+            background-color: transparent !important;
+        }
+    }
+    button {
+        border: none;
+        background-color: transparent;
+        &:focus {
+            background-color: none;
+        }
+        &:hover span {
+            background-color: transparent !important;
+        }
+    }
+    svg {
+        display: none;
+    }
+}
