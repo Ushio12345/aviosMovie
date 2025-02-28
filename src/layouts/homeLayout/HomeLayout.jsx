@@ -21,7 +21,9 @@ function HomeLayout({ authRedux }) {
             setIsLogin(false);
         }
     }, [userAuth]);
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
     // logout
     const handleLogout = () => {
         dispatch(clearUserAuth());

@@ -4,32 +4,7 @@ import getFilm from "../services/FilmServices";
 import FilmItem from "./FilmItem";
 
 export default function DailyFilm({ listFilm }) {
-    const [dayliFim, setDailyFilm] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        getDailyFilm();
-    }, [listFilm]);
-
-    // fim đang chiếu
-    const getDailyFilm = () => {
-        setLoading(true);
-        try {
-            if (listFilm) {
-                const dailyFilms = listFilm.filter((f) => f.dangChieu === true);
-                // console.log("a", listFilm.maPhim);
-
-                console.log("Danh sách phim đang chiếu:", dailyFilms);
-                setDailyFilm(dailyFilms);
-
-                return dailyFilms;
-            }
-        } catch (error) {
-            console.log("Danh sách phim không hợp lệ", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const dailyFilmsList = listFilm?.filter((f) => f.dangChieu === true) || [];
 
     return (
         <div className="layout-padding relative">
@@ -39,7 +14,7 @@ export default function DailyFilm({ listFilm }) {
                 <h3>Phim Đang Khởi Chiếu</h3>
             </div>
 
-            <FilmItem dataFilm={dayliFim} isLoading={loading}></FilmItem>
+            <FilmItem dataFilm={dailyFilmsList}></FilmItem>
         </div>
     );
 }

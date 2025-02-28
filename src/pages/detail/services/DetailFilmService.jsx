@@ -13,7 +13,7 @@ export const getDetailFilm = async (id) => {
 export const fetchDetailFilm = (id) => {
     try {
         const data = getDetailFilm(id);
-        console.log(data, id);
+        // console.log(data, id);
         return data;
     } catch {
         console.log("Lỗi trong quá trình lấy data detail flim,");

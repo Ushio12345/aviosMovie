@@ -5,13 +5,14 @@ import ManagerLayout from "../layouts/managerLayout/ManagerLayout";
 import { Route, Routes } from "react-router-dom";
 import HomeLayout from "../layouts/homeLayout/HomeLayout";
 import Loading from "../components/loading/Loading";
-
 import Register from "../pages/Auth/services/Register";
 import Login from "../pages/Auth/Login";
 import PersistLogin from "../pages/PersistLogin";
 import TopFlim from "../pages/topFilm/TopFlim";
-import UpcomingFlim from "../pages/upcomingFilm/UpcomingFlim";
 import DetailFilm from "../pages/detail/DetailFilm";
+import FilmWithStatus from "../filmWithStatus/FilmWithStatus";
+
+import Cinema from "../pages/cinema/Cinema";
 
 export default function MainRoutes() {
     return (
@@ -26,7 +27,9 @@ export default function MainRoutes() {
                 <Route path="/" element={<HomeLayout />}>
                     <Route index element={<HomePage />} />
                     <Route path="top-film" element={<TopFlim />}></Route>
-                    <Route path="upcoming-film" element={<UpcomingFlim />}></Route>
+                    {/* <Route path="upcoming-film" element={<UpcomingFlim />}></Route> */}
+                    <Route path="/*" element={<FilmWithStatus />}></Route>
+                    <Route path="cinema" element={<Cinema />}></Route>
                     <Route path="detail-film/:maPhim" element={<DetailFilm />}></Route>
                 </Route>
                 {/*  */}

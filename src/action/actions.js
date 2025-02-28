@@ -1,4 +1,4 @@
-import { ADD, CLEAR_USER_AUTH, GET, SET_FILM, SET_USER_AUTH } from "./types";
+import { ADD, CLEAR_USER_AUTH, GET, SELECTED_CINEMA, SET_FILM, SET_USER_AUTH } from "./types";
 
 export const addNew = (data) => {
     return {
@@ -33,5 +33,12 @@ export const setFlimRedux = (f) => {
     return {
         type: SET_FILM,
         payload: f,
+    };
+};
+
+export const setSelectedCinemaSystem = (maHeThongRap, maCumRap) => {
+    return {
+        type: SELECTED_CINEMA,
+        payload: { maHeThongRap, maCumRap },
     };
 };

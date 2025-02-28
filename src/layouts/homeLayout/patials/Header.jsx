@@ -9,8 +9,6 @@ import { ExpandMore } from "@mui/icons-material";
 import useToogle from "../../../hooks/useToogle";
 
 export default function Header({ userAuth, isLogin, logout, isHeader2 }) {
-    console.log(isHeader2);
-
     const [isScrolled, setIsScrolled] = useState(false);
     const [isShow, setIsShow] = useToogle();
     const navigator = useNavigate();
@@ -74,12 +72,12 @@ export default function Header({ userAuth, isLogin, logout, isHeader2 }) {
                             </li>
                             <li>
                                 <button onClick={setIsShow} className="text-white">
-                                    Phim <ExpandMore />
+                                    Lịch chiếu <ExpandMore />
                                 </button>
                                 {isShow && <Category />}
                             </li>
                             <li>
-                                <NavLink to="/services">Rạp</NavLink>
+                                <NavLink to="/cinema">Rạp</NavLink>
                             </li>
                             <li>
                                 <NavLink to="/pricing">Pricing</NavLink>

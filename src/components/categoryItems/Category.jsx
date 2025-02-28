@@ -17,7 +17,7 @@ export default function Category() {
                 </li>
                 <li>
                     <NavLink to={"hot-phim"} className={({ isActive }) => (isActive ? "active" : "")}>
-                        Phim hot
+                        Phim đang hot
                     </NavLink>
                 </li>
             </ul>

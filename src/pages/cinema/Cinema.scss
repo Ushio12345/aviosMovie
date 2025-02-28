@@ -1,0 +1,36 @@
+.list-cinema {
+    width: 70px;
+    border-right: 1px solid rgba(128, 128, 128, 0.204);
+}
+.rap {
+    border: 1px solid rgba(128, 128, 128, 0.204);
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+    .cinema-items {
+        &.active {
+            border-right: 2px solid var(--orange);
+        }
+    }
+    .listCum {
+        border-right: 1px solid rgba(128, 128, 128, 0.204);
+
+        .cum {
+            border-bottom: 1px solid rgba(128, 128, 128, 0.204);
+            &.active {
+                border-right: 2px solid var(--orange);
+            }
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            p {
+                font-size: 13px;
+            }
+            h3 {
+                color: var(--orange);
+                font-weight: 600;
+                font-size: 18px;
+            }
+        }
+    }
+}

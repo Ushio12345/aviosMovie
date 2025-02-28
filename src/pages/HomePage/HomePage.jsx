@@ -20,7 +20,7 @@ export default function HomePage() {
     const dispatch = useDispatch();
     useEffect(() => {
         getAllFilm();
-    }, []);
+    }, [dispatch]);
     const getAllFilm = async () => {
         setLoading(true);
         try {

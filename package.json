@@ -20,6 +20,7 @@
         "date-fns": "^4.1.0",
         "flowbite": "^3.1.2",
         "flowbite-react": "^0.10.2",
+        "framer-motion": "^12.4.7",
         "jwt-decode": "^4.0.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
