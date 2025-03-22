@@ -1,12 +1,13 @@
 import React from "react";
-import ManagerPage from "../../pages/manager/ManagerPage";
+import { Outlet } from "react-router-dom";
+import ManagerPage from "../../pages/managerPage/ManagerPage";
 
-export default function ManagerLayout() {
+const ManagerLayout = () => {
     return (
-        <div>
-            <div>
-                <ManagerPage />
-            </div>
-        </div>
+        <ManagerPage>
+            <Outlet />
+        </ManagerPage>
     );
-}
+};
+
+export default ManagerLayout;

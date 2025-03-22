@@ -1,1 +1,1 @@
-export {default} from './PersistLogin'
+export { default } from "./PersistLogin";

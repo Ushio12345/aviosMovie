@@ -6,6 +6,7 @@ import "./HomeLayout.scss";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { clearUserAuth } from "../../action/actions";
+import persistStore from "redux-persist/es/persistStore";
 
 function HomeLayout({ authRedux }) {
     const [isLogin, setIsLogin] = useState(false);
@@ -27,13 +28,15 @@ function HomeLayout({ authRedux }) {
     // logout
     const handleLogout = () => {
         dispatch(clearUserAuth());
+        localStorage.removeItem("accessToken");
         setIsLogin(false);
         nagivator("/login");
     };
 
     // change color header
     const location = useLocation();
-    const header2 = location.pathname.startsWith("/detail-film");
+    const paths = ["/detail-film", "/ticket", "/my-account", "/history-order"];
+    const header2 = paths.some((path) => location.pathname.startsWith(path));
 
     return (
         <div className="homeLayout ">

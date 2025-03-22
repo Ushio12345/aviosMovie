@@ -13,20 +13,21 @@ import { setFlimRedux } from "../../action/actions";
 
 export default function HomePage() {
     const [loading, setLoading] = useState(true);
-    // const [listFilm, setListFilm] = useState([]);
-    const listFilm = useSelector((state) => state.counter.listFilm);
+    const [listFilm, setListFilm] = useState([]);
+    const listFilmRedux = useSelector((state) => state.counter.listFilm);
     // console.log("data", listFilm);
+    console.log("listFilm", listFilmRedux);
 
     const dispatch = useDispatch();
     useEffect(() => {
         getAllFilm();
-    }, [dispatch]);
+    }, []);
     const getAllFilm = async () => {
         setLoading(true);
         try {
             const res = await getFilm();
             // console.log("data film", res);
-            // setListFilm(res.data.content);
+            setListFilm(res.data.content);
             dispatch(setFlimRedux(res.data.content));
         } catch (error) {
             console.log("Không lấy đươc api film", error);

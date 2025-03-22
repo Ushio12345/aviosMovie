@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import FilmItem from "./FilmItem";
 
 export default function NowFilm({ listFilm }) {
+    console.log(listFilm);
+
     return (
         <div className="layout-padding">
             <div className="title-status">

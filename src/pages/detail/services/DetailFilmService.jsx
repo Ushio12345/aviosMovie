@@ -2,7 +2,8 @@ import axiosIntance from "../../../services/axiosInstance";
 
 export const getDetailFilm = async (id) => {
     try {
-        const response = await axiosIntance.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
+        const response = await axiosIntance.get(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`);
+        console.log(response);
 
         return response.data.content;
     } catch (error) {

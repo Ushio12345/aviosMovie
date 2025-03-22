@@ -34,3 +34,16 @@
         }
     }
 }
+
+.lichChieu {
+    .lichItem {
+        border: 2px solid rgba(128, 128, 128, 0.185);
+        border-radius: 5px;
+    }
+    :hover {
+        background-color: var(--black);
+        cursor: pointer;
+        transition: 0.5s;
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,10 @@
+.changepass {
+    button {
+        border: 0;
+        color: orangered;
+        &:hover {
+            background-color: transparent;
+            color: black;
+        }
+    }
+}

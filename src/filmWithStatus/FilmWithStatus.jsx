@@ -11,12 +11,17 @@ export default function FilmWithStatus() {
     const [title, setTitle] = useState("Danh sách phim");
     const location = useLocation();
     const listFilm = useSelector((state) => state.counter.listFilm);
+    // console.log("====================================");
+    // console.log(listFilm);
+    // console.log("====================================");
     const dangChieu = listFilm.filter((f) => f.dangChieu === true);
     const sapChieu = listFilm.filter((f) => f.sapChieu === true);
     const hot = listFilm.filter((f) => f.hot === true);
 
     useEffect(() => {
-        switch (location.pathname) {
+        const path = location.pathname.split("?")[0]; // Xóa query params nếu có
+
+        switch (path) {
             case "/dang-chieu":
                 setTitle("Phim đang chiếu");
                 break;

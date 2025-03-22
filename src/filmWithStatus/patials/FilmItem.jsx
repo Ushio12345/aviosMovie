@@ -5,6 +5,8 @@ import usePagination from "../../hooks/usePagination";
 import CustomIcons from "../../components/pagination/Pagiantion";
 
 export default function FilmItem({ films }) {
+    // console.log(films);
+
     const renderFilms = () => {
         return currentItems.map((f) => (
             <div key={f.maPhim} className="film-item relative p-3">

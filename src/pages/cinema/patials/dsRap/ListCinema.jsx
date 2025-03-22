@@ -1,50 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { getAllCinema } from "../../services/CinemaServices";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { setSelectedCinemaSystem } from "../../../../action/actions";
 
 export default function ListCinema() {
-    const [heThongRap, setHeThongRap] = useState([]);
-    const selectedCinema = useSelector((state) => state.counter.selectedCinema);
+    console.log("check re-render list cinema");
+    const [listCinema, setListCinema] = useState([]);
+    const selectedCinema = useSelector((state) => state.counter.selectedCinema, shallowEqual);
+    // const [selectedHt, setSelectedHt] = useState(null);
     const dispatch = useDispatch();
     useEffect(() => {
-        const fetchListCinema = async () => {
-            try {
-                const cinema = await getAllCinema();
-                setHeThongRap(cinema.data.content);
-
-                return cinema.data.content;
-            } catch (error) {
-                console.log("CÓ lỗi trong quá trình lấy data Hệ thống rạp", error);
+        const fetchHeThongRap = async () => {
+            const cineme = await getAllCinema();
+            if (!cineme && !cineme?.data.content) return;
+            setListCinema(cineme.data.content);
+            // console.log("ht", cineme.data.content[0].maHeThongRap);
+            if ((!selectedCinema && selectedCinema.maHeThongRap === null) || selectedHt === null) {
+                dispatch(setSelectedCinemaSystem(cineme.data.content[0].maHeThongRap));
+                // setSelectedHt(cineme.data.content[0].maHeThongRap);
             }
         };
-        fetchListCinema();
-    }, []);
-    // console.log("s", heThongRap);
-    const renderHeThongRap = () => {
-        return heThongRap.length > 0 ? (
-            <div className=" flex flex-col justify-center items-center">
-                {heThongRap.map((c) => {
-                    return (
-                        <div key={c.maHeThongRap} className=" flex items-center justify-center gap-2">
+        fetchHeThongRap();
+    }, [selectedCinema.maHeThongRap]);
+    const handleSelectedSystem = (maHeThongRap) => {
+        dispatch(setSelectedCinemaSystem(maHeThongRap));
+        // setSelectedHt(maHeThongRap);
+    };
+    return (
+        <div className="list-cinema">
+            {listCinema.length > 0 && (
+                <div className="">
+                    {listCinema.map((ht) => (
+                        <div key={ht.maHeThongRap} className="border border-b-2">
                             <div
-                                className={`cinema-items h-[70px] w-[70px] border-b-2 ${
-                                    selectedCinema.maHeThongRap === c.maHeThongRap ? "active" : ""
-                                } `}
-                                onClick={() => dispatch(setSelectedCinemaSystem(c.maHeThongRap))}
+                                className={`img-logo p-3 ${selectedCinema.maHeThongRap === ht.maHeThongRap ? "border-r-2 border-green-500" : ""}`}
+                                onClick={() => handleSelectedSystem(ht.maHeThongRap)}
                             >
-                                <img src={c.logo} alt="Logo Rạp" className="p-2"></img>
+                                <img src={ht.logo} alt="Logo" />
                             </div>
                         </div>
-                    );
-                })}
-            </div>
-        ) : (
-            <div className="">
-                <p className="text-center">Hiện không tìm thấy hệ thống rạp nào.</p>
-            </div>
-        );
-    };
-
-    return <div className="">{renderHeThongRap()}</div>;
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }

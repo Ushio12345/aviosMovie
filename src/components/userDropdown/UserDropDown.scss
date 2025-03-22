@@ -7,9 +7,9 @@
             background-color: transparent !important;
         }
     }
-    button {
+    > button {
         border: none;
-        background-color: transparent;
+        // background-color: transparent;
         &:focus {
             background-color: none;
         }
