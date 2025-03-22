@@ -5,12 +5,16 @@ import Button from "../../../components/button/Button";
 import UserDropDown from "../../../components/userDropdown/UserDropDown";
 import "../HomeLayout.scss";
 import Category from "../../../components/categoryItems/Category";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, Search } from "@mui/icons-material";
 import useToogle from "../../../hooks/useToogle";
+import SearchFilmTable from "../../../components/search/SearchFilmTable";
+import { useShowModal } from "../../../hooks/useShowDialog";
 
 export default function Header({ userAuth, isLogin, logout, isHeader2 }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isShow, setIsShow] = useToogle();
+    const [isShowSearch, setIsShowSearch] = useToogle();
+    const { open, handleClickOpen, handleClose } = useShowModal();
     const navigator = useNavigate();
     const handleScroller = () => {
         if (window.scrollY > 100) {
@@ -29,7 +33,7 @@ export default function Header({ userAuth, isLogin, logout, isHeader2 }) {
     }, []);
 
     return (
-        <div className={`${isHeader2 ? "header2" : ""} header fixed top-0 right-0 z-50 w-[100vw]`}>
+        <div className={`${isHeader2 ? "header2" : ""} header fixed top-0 right-0 z-50 w-[100vw] left-0`}>
             <nav className={`border-gray-200 dark:bg-gray-900 ${isScrolled ? "bg-black" : "bg-transparent"}`}>
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to={"/"} className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -45,6 +49,14 @@ export default function Header({ userAuth, isLogin, logout, isHeader2 }) {
                                 Đăng nhập
                             </Button>
                         )}
+
+                        {/* search */}
+                        <div className=" text-white h-[40px] w-[40px] flex-center search-films relative">
+                            <button onClick={setIsShowSearch}>
+                                <Search />
+                            </button>
+                            {isShowSearch && <SearchFilmTable open={open} onClose={handleClose} />}
+                        </div>
 
                         {/* Dropdown menu */}
 
