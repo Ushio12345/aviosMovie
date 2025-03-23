@@ -110,9 +110,11 @@ export default function FeaturedMovies({ listFilm }) {
             )}
 
             <div className="mt-24   border-gray-600 border-2 w-fit m-auto p-4">
-                <div className="flex-center gap-3">
-                    <span className="text-orange-800 text-2xl">{topFilm.length}</span>
-                    <p>phim được khán giả đánh giá cao bạn có thể khám phá</p>
+                <div className="flex-center gap-3 flex-wrap">
+                    <div className="sm:text-left text-center">
+                        <span className="text-orange-800 text-2xl">{topFilm.length}</span>
+                        <p>Phim được khán giả đánh giá cao bạn có thể khám phá</p>
+                    </div>
                     <Button bgColor="var(--orange)" color="white" height="30px" hoverColor="var(--orange)" onClick={handleChange}>
                         Khám phá ngay
                     </Button>

@@ -23,6 +23,7 @@ import ManagerLayout from "../layouts/managerLayout/ManagerLayout";
 import UserManage from "../pages/managerPage/patials/UserManage";
 import FilmsManage from "../pages/managerPage/patials/FilmsManage";
 import Booking from "../pages/managerPage/patials/Booking";
+import Contact from "../pages/contact/Contact";
 // import UpComingFilm from "../filmWithStatus/patials/UpComingFilm";
 
 export default function MainRoutes() {
@@ -47,6 +48,7 @@ export default function MainRoutes() {
 
                     <Route path="cinema" element={<Cinema />}></Route>
                     <Route path="detail-film/:maPhim" element={<DetailFilm />}></Route>
+                    <Route path="/contact" element={<Contact />}></Route>
                     <Route element={<PrivateRoute />}>
                         <Route path="ticket/:maLichChieu" element={<OrderTicket />} />
                         <Route path="my-account" element={<MyProfile />} />

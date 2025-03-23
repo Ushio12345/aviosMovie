@@ -93,7 +93,7 @@ export default function EditFilmModal({ editItem, open, handleClose }) {
                 "Content-Type": "multipart/form-data",
             },
         })
-            .then((rs) => console.log(rs))
+            .then((rs) => dispatch(editFilmsRedux(formData)))
             .catch((err) => console.log(err));
     };
 

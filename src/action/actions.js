@@ -7,6 +7,7 @@ import {
     EDIT,
     EDIT_FILM,
     GET,
+    GET_INFOR_BOOKING,
     GET_MA_RAP_CHIEU,
     LIST_SEAT,
     SELECTED_CINEMA,
@@ -122,5 +123,13 @@ export const setSchedualRedux = (selectedCinema, date, maRap, price) => {
     return {
         type: SET_SCHEDUAL,
         payload: { ...selectedCinema, date, maRap, price },
+    };
+};
+
+//luu thong tin dat ve
+export const getInforBooking = (data) => {
+    return {
+        type: GET_INFOR_BOOKING,
+        payload: data,
     };
 };

@@ -11,9 +11,9 @@ export default function Banner({ title, linkTitle, imgBanner, link }) {
 
     return (
         <div>
-            <div className="sub-banner relative text-white" style={{ backgroundImage: `url(${imgBanner})` }}>
+            <div className="sub-banner relative text-white " style={{ backgroundImage: `url(${imgBanner})` }}>
                 <div className="overlay"></div>
-                <div className="absolute center-ab">
+                <div className="absolute center-ab w-full">
                     <div className="flex-center gap-5">
                         <h4 className="md:text-xl text-lg cursor-pointer" onClick={() => handleChangePage("/")}>
                             Trang chủ

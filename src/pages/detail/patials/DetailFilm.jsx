@@ -2,8 +2,9 @@ import React from "react";
 import Loading from "../../../components/loading/Loading";
 import { format } from "date-fns";
 import Button from "../../../components/button/Button";
-export default function DetailFilmItem({ loading, detail, isDetail, handleOpen }) {
+export default function DetailFilmItem({ loading, detail, isDetail, handleOpen, toogleDetailMota }) {
     const { ngayKhoiChieu, hinhAnh, tenPhim, moTa, maPhim, hot, sapChieu, dangChieu, danhGia, trailer } = detail;
+
     return (
         <div>
             {" "}

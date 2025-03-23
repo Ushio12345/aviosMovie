@@ -84,3 +84,43 @@
 // .homeLayout > .content {
 //     flex: 1;
 // }
+
+.menu-mobile {
+    width: 100%;
+    padding: 20px 10px;
+    margin: 0 auto;
+    position: absolute;
+    background-color: white;
+    right: 0;
+    top: 100%;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+        font-size: 17px !important;
+        width: 100%;
+        border-bottom: 2px solid rgba(128, 128, 128, 0.211);
+        padding: 10px 0;
+        color: black;
+        &.active {
+            color: var(--orange);
+            font-size: 600;
+        }
+    }
+}
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-in-out;
+}

@@ -9,13 +9,15 @@ import { setUserAuth } from "../../action/actions";
 import { jwtDecode } from "jwt-decode";
 import { showAlert } from "../../components/Aleart/Aleart";
 import useInput from "../../hooks/useInput";
+import useToogle from "../../hooks/useToogle";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 function Login() {
     const dispatch = useDispatch();
 
     const userA = useSelector((state) => state.counter.userAuth);
     console.log("user re", userA);
-
+    const [isShow, setIsShow] = useToogle();
     const taiKhoanRef = useInput();
     const matKhauRef = useInput();
 
@@ -97,7 +99,9 @@ function Login() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Đăng nhập</h1>
                             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                                 <div>
-                                    <label htmlFor="taiKhoan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                                    <label htmlFor="taiKhoan" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        Tài khoản
+                                    </label>
                                     <input
                                         type="text"
                                         name="taiKhoan"
@@ -110,17 +114,22 @@ function Login() {
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                        Password
+                                        Mật khẩu
                                     </label>
-                                    <input
-                                        type="password"
-                                        name="matKhau"
-                                        id="matKhau"
-                                        ref={matKhauRef.refValue}
-                                        placeholder="••••••••"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    />
-                                    <p className="text-red-400 italic text-sm">{errors.matKhau}</p>
+                                    <div className="relative">
+                                        <input
+                                            type={isShow ? "text" : "password"}
+                                            name="matKhau"
+                                            id="matKhau"
+                                            ref={matKhauRef.refValue}
+                                            placeholder="••••••••"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
+                                        <p className="text-red-400 italic text-sm">{errors.matKhau}</p>
+                                        <div className="absolute top-1/2 right-3 -translate-y-1/2" onClick={setIsShow}>
+                                            {isShow ? <Visibility /> : <VisibilityOff />}
+                                        </div>
+                                    </div>
                                 </div>
                                 {/* <div className="flex items-center justify-between">
                                     <div className="flex items-start">

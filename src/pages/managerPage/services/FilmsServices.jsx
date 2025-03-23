@@ -97,3 +97,26 @@ export const createSchedualFilms = async (dataForm) => {
         }
     }
 };
+
+export const filterFilmByDate = async (dataForm, soTrang, soPhanTuTrenTrang) => {
+    const tuNgay = dataForm.tuNgay;
+    const denNgay = dataForm.denNgay;
+    // console.log(soTrang, soPhanTuTrenTrang, tuNgay, denNgay);
+    try {
+        const res = await axiosIntance.get(
+            `QuanLyPhim/LayDanhSachPhimTheoNgay?soTrang=1&soPhanTuTrenTrang=${soPhanTuTrenTrang}&tuNgay=${tuNgay}&denNgay=${denNgay}`
+        );
+        console.log("====================================");
+        console.log(res);
+        console.log("====================================");
+        return res;
+    } catch (error) {
+        console.log(error);
+
+        if (error && error.status === 401 && error.response.data.content === "Token không hợp lệ hoặc đã hết hạn.") {
+            handleTokenError();
+        } else {
+            showAlert("error", "Lỗi !", `${error.response.data.content}`, "top-end");
+        }
+    }
+};

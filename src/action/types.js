@@ -28,3 +28,5 @@ export const ADD_FILM = "ADD_FILM";
 export const DELETE_FILM = "DELETE_FILM";
 
 export const SET_SCHEDUAL = "SET_SCHEDUAL";
+
+export const GET_INFOR_BOOKING = "GET_INFOR_BOOKING";

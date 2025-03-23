@@ -11,7 +11,7 @@ export const PrivateRoute = ({ role }) => {
     useEffect(() => {
         if (!isLogin || !userAuth) {
             showConfirmAlert("Lỗi", "Vui lòng đăng nhập để truy cập trang!", "Đã rõ", "center");
-            setTimeout(() => setRedirectTo("/login"), 1500); // Chuyển hướng sau 1.5 giây
+            setTimeout(() => setRedirectTo("/login"), 1500);
         } else if (role && userAuth.role[0] !== role) {
             showConfirmAlert("Lỗi", "Bạn không có quyền truy cập!", "Đã rõ", "center");
             setTimeout(() => setRedirectTo("/"), 1500);

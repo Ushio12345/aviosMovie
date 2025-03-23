@@ -3,6 +3,7 @@ import Button from "../../../components/button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "./LoginService";
 import { validateForm } from "../schema/ValidateForm";
+import { showAlert } from "../../../components/Aleart/Aleart";
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -37,12 +38,12 @@ export default function Register() {
 
                 if (response) {
                     console.log(response);
-                    alert("Đăng kí thành công! Chuyển đến trang đăng nhập.");
+                    showAlert("success", "Thành công", "Đăng kí thành công chuyển đến trang đăng nhâp", "top-right");
                     nagivator("/login");
                 }
             } catch (error) {
                 console.error("Đăng kí thất bại:", error);
-                alert("Tài khoản đã tồn tại hoặc lỗi server!");
+                showAlert("Tài khoản đã tồn tại hoặc lỗi server!");
             }
         } else {
             console.log("Có lỗi trong form, không gửi request.");

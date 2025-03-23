@@ -39,6 +39,7 @@ export default function OrderTicket() {
     }, [maLichChieu]);
 
     const inforFilmsMemo = useMemo(() => data.inforFilms, [data.inforFilms]);
+
     const listSeatMemo = useMemo(() => data.listSeat, [data.listSeat]);
 
     const handleSelectedSeat = (seat) => {

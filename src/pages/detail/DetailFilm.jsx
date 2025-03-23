@@ -48,7 +48,7 @@ export default function DetailFilm() {
             {loading ? (
                 <Loading />
             ) : detail ? (
-                <DetailFilmItem loading={loading} detail={detail} isDetail={isDetail} handleOpen={handleOpen} />
+                <DetailFilmItem loading={loading} detail={detail} isDetail={isDetail} handleOpen={handleOpen} toogleDetailMota={toogleDetailMota} />
             ) : (
                 <p>Hiện phim này không có dữ liệu hoặc bị lỗi vui lòng thử lại sau!</p>
             )}

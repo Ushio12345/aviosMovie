@@ -8,6 +8,7 @@ import {
     EDIT,
     EDIT_FILM,
     GET,
+    GET_INFOR_BOOKING,
     GET_MA_RAP_CHIEU,
     LIST_SEAT,
     SELECTED_CINEMA,
@@ -26,6 +27,7 @@ const INITIAL_STATE = {
     },
     listSeat: [],
     maLichChieu: null,
+    bookingInfor: {},
 };
 // console.log("a", listSeat);
 
@@ -108,6 +110,14 @@ const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 maLichChieu: action.payload,
+            };
+        }
+
+        // booking
+        case GET_INFOR_BOOKING: {
+            return {
+                ...state,
+                bookingInfor: action.payload,
             };
         }
         default:

@@ -12,11 +12,10 @@ import { showAlert } from "../../../components/Aleart/Aleart";
 import { format } from "date-fns";
 export default function CreateSchedual() {
     const location = useLocation();
+
     const film = location.state?.film;
-    console.log(film);
 
     const selected = useSelector((state) => state.counter.selectedCinema);
-    console.log(selected);
 
     const [err, setErr] = useState({});
     const [dataSchedualForm, setDataSchedualForm] = useState({

@@ -192,10 +192,7 @@ export default function UserManage() {
                 const res = deleteUser(u);
                 console.log("res", res);
 
-                if (res.status === 200) {
-                    dispatch(deleteUs(u));
-                    showAlert("success", "Thành công", `Xóa thành công tài khoản ${u}`, "top-end");
-                }
+                dispatch(deleteUs(u));
             }
         });
     };

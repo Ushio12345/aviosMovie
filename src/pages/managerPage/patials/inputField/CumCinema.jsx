@@ -82,7 +82,7 @@ export default function CumCinema({ err }) {
                 {err.maCumRap && <FormHelperText sx={{ color: "#c62828" }}>{err.maCumRap}</FormHelperText>}
             </FormControl>
 
-            <RapCinema listCum={selectedCumData} err={err} />
+            {/* <RapCinema listCum={selectedCumData} err={err} /> */}
         </div>
     );
 }

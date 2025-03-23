@@ -42,10 +42,13 @@ export const editInforUser = async (dataForm) => {
 
         return res;
     } catch (error) {
-        console.error("Có lỗi trong quá trình gọi api chinh sua người dùng", error);
-        // console.log("error", error.response.data.c);
+        console.log(error);
 
-        showAlert("error", "Lỗi!", `${error.response.data.content}`, "top-right");
+        if (error.response && error.response.status === 401 && error.response.data.message === "Token không hợp lệ hoặc đã hết hạn.") {
+            handleTokenError();
+        } else {
+            showAlert("error", "Lỗi !", `${error.response.data.content}`, "top-end");
+        }
     }
 };
 
@@ -54,11 +57,17 @@ export const deleteUser = async (taiKhoan) => {
 
     try {
         const res = await axiosIntance.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`);
+        if (res.status === 200) {
+            showAlert("success", "Thành công", `Xóa thành công tài khoản ${taiKhoan}`, "top-end");
+        }
         return res;
     } catch (error) {
         console.log(error);
-        if (error.status === 500) {
-            showAlert("error", "Lỗi!", `${error.response.data.content}`, "center");
+
+        if (error.response && error.response.status === 401 && error.response.data.message === "Token không hợp lệ hoặc đã hết hạn.") {
+            handleTokenError();
+        } else {
+            showAlert("error", "Lỗi !", `${error.response.data.content}`, "top-end");
         }
     }
 };

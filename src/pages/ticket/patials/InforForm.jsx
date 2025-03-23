@@ -3,12 +3,13 @@ import Button from "../../../components/button/Button";
 import { showAlert, showConfirmAlert } from "../../../components/Aleart/Aleart";
 import { bookingTicket } from "../services/OrderService";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSeatStatus } from "../../../action/actions";
+import { getInforBooking, updateSeatStatus } from "../../../action/actions";
 
 const InforForm = ({ inforFilms, selectedSeat, setSelectedSeat }) => {
     const { tenPhim, diaChi, hinhAnh, maLichChieu, ngayChieu, tenCumRap, tenRap } = inforFilms;
     const listSeat = useSelector((state) => state.counter.listSeat);
     // console.log("infor", inforFilms);
+
     console.log("check status seat", selectedSeat);
     const dispatch = useDispatch();
     // tinh tong tien
@@ -48,10 +49,12 @@ const InforForm = ({ inforFilms, selectedSeat, setSelectedSeat }) => {
             setSelectedSeat([]);
 
             dispatch(updateSeatStatus(dataBooking.danhSachVe.flatMap((ve) => ve.maGhe)));
+            dispatch(getInforBooking(inforFilms));
         }
 
-        console.log(respone);
+        // console.log(respone);
     };
+    // console.log("inforfilm redux", inforFilms);
 
     return (
         <div className="infor-film ">

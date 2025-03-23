@@ -43,7 +43,7 @@ img {
     text-align: center;
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin: 20px 0;
     gap: 10px;
     i {
         color: var(--orange);
@@ -78,12 +78,22 @@ a {
         width: 50px;
         height: 50px;
     }
+    h3 {
+        font-size: 20px !important;
+    }
 }
 //md
 @media (max-width: 768px) {
     .layout,
     .layout-padding {
         width: 90%;
+    }
+    h3 {
+        font-size: 17px !important;
+    }
+    p,
+    a {
+        font-size: 12px !important;
     }
 }
 // sm
@@ -95,4 +105,19 @@ a {
     h4 {
         font-size: 17px !important;
     }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-in-out;
 }

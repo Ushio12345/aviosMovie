@@ -4,7 +4,7 @@ import "./HistoryBooking.scss";
 import MultipleSelect from "../../components/select/Selected";
 export default function HistoryBooking() {
     return (
-        <div className="history-booking py-[100px]">
+        <div className="history-booking py-[100px] overflow-x-auto ">
             <BookingItems />
         </div>
     );
