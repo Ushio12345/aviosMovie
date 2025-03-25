@@ -106,9 +106,6 @@ export const filterFilmByDate = async (dataForm, soTrang, soPhanTuTrenTrang) => 
         const res = await axiosIntance.get(
             `QuanLyPhim/LayDanhSachPhimTheoNgay?soTrang=1&soPhanTuTrenTrang=${soPhanTuTrenTrang}&tuNgay=${tuNgay}&denNgay=${denNgay}`
         );
-        console.log("====================================");
-        console.log(res);
-        console.log("====================================");
         return res;
     } catch (error) {
         console.log(error);

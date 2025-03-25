@@ -31,7 +31,7 @@ export default function MainRoutes() {
         <Routes>
             <Route element={<PersistLogin />}>
                 {/* auth page */}
-                <Route path="*" element={<Page404 />} />
+                {/* <Route path="*" element={<Page404 />} /> */}
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 {/*  */}

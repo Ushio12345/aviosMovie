@@ -10,7 +10,7 @@ import { addNewFilmRedux } from "../../../../action/actions";
 
 export default function AddFilmModal() {
     const listFilmRedux = useSelector((state) => state.counter.listFilm);
-    console.log("a", listFilmRedux);
+
     const dispatch = useDispatch();
 
     const [dataFilm, setDataFilm] = useState({

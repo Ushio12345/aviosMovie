@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "./LoginService";
 import { validateForm } from "../schema/ValidateForm";
 import { showAlert } from "../../../components/Aleart/Aleart";
+import useToogle from "../../../hooks/useToogle";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -16,6 +18,8 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
     const nagivator = useNavigate();
+    const [isShowPwd, setIsShowPwd] = useToogle();
+    const [isShowConfirmPwd, setIsComfirm] = useToogle();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -98,15 +102,20 @@ export default function Register() {
                                         <label htmlFor="matKhau" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                             Mật khẩu
                                         </label>
-                                        <input
-                                            type="password"
-                                            name="matKhau"
-                                            id="matKhau"
-                                            value={formData.matKhau}
-                                            onChange={handleChange}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="••••••••"
-                                        />
+                                        <div className="relative">
+                                            <input
+                                                type={isShowPwd ? "text" : "password"}
+                                                name="matKhau"
+                                                id="matKhau"
+                                                value={formData.matKhau}
+                                                onChange={handleChange}
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="••••••••"
+                                            />
+                                            <div className="absolute top-1/2 -translate-y-1/2 right-3" onClick={setIsShowPwd}>
+                                                {!isShowPwd ? <VisibilityOff /> : <Visibility />}
+                                            </div>
+                                        </div>
                                         <p className="text-xs text-red-400 italic">{errors.matKhau}</p>
                                     </div>
 
@@ -114,15 +123,20 @@ export default function Register() {
                                         <label htmlFor="confirmMatKhau" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                             Xác nhận mật khẩu
                                         </label>
-                                        <input
-                                            type="password"
-                                            name="confirmPassword"
-                                            id="confirmPassword"
-                                            value={confirmPassword}
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="••••••••"
-                                        />
+                                        <div className="relative">
+                                            <input
+                                                type={isShowConfirmPwd ? "text" : "password"}
+                                                name="confirmPassword"
+                                                id="confirmPassword"
+                                                value={confirmPassword}
+                                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="••••••••"
+                                            />
+                                            <div className="absolute top-1/2 -translate-y-1/2 right-3" onClick={setIsComfirm}>
+                                                {!isShowConfirmPwd ? <VisibilityOff /> : <Visibility />}
+                                            </div>
+                                        </div>
                                         <p className="text-xs text-red-400 italic">{errors.confirmPassword}</p>
                                     </div>
                                 </div>

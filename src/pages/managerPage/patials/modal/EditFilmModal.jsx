@@ -35,7 +35,6 @@ export default function EditFilmModal({ editItem, open, handleClose }) {
             setDataFilm({ ...editItem });
         }
     }, [editItem.maPhim]);
-    console.log("dataFilm", dataFilm);
 
     const handleChange = (e) => {
         const { name, value, type, checked, files } = e.target;
@@ -49,7 +48,6 @@ export default function EditFilmModal({ editItem, open, handleClose }) {
                 ...prev,
                 hinhAnh: files[0],
             }));
-            console.log(e.target.files[0]);
         } else {
             setDataFilm((prev) => ({
                 ...prev,
@@ -88,13 +86,18 @@ export default function EditFilmModal({ editItem, open, handleClose }) {
             console.log(pair[0], pair[1]);
         }
 
-        await editFilms(formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        })
-            .then((rs) => dispatch(editFilmsRedux(formData)))
-            .catch((err) => console.log(err));
+        try {
+            const res = await editFilms(formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            console.log("edit res", res);
+
+            dispatch(editFilmsRedux(res.data.content));
+        } catch (error) {
+            console.error("Lỗi khi edit films", error);
+        }
     };
 
     return (
