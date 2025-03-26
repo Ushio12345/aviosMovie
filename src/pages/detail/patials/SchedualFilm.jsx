@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { getThongTinLichChieuPhim } from "../../cinema/services/FilmsServices";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore, WrongLocation } from "@mui/icons-material";
 import SelectedDate from "./SelectedDate";
 import { useNavigate } from "react-router-dom";
 export default function SchedualFilm({ maPhim }) {
@@ -21,6 +21,7 @@ export default function SchedualFilm({ maPhim }) {
             const res = await getThongTinLichChieuPhim(maPhim);
             if (!res) return;
             const heThongRap = res.data.content || [];
+
             // console.log(
             //     "malich",
             //     heThongRap.heThongRapChieu.flatMap((ht) => ht.cumRapChieu.flatMap((cum) => cum.lichChieuPhim.flatMap((lich) => lich.maLichChieu)))
@@ -76,6 +77,7 @@ export default function SchedualFilm({ maPhim }) {
     // cum và lich chieu
     const renderThongTinLichChieu = () => {
         if (!filteredRapChieu) return;
+        console.log(filteredRapChieu);
 
         return filteredRapChieu.length > 0 ? (
             <div>
@@ -135,8 +137,10 @@ export default function SchedualFilm({ maPhim }) {
                 )}
             </div>
         ) : (
-            <div>
-                <p>Hiện không có cụm nào chiếu phim này</p>
+            <div className="flex justify-center">
+                <p className="flex items-center">
+                    <WrongLocation /> Hiện không có cụm nào chiếu phim này
+                </p>
             </div>
         );
     };

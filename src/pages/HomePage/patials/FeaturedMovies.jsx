@@ -29,28 +29,29 @@ export default function FeaturedMovies({ listFilm }) {
             setTopFilm(topFilmsFormatted);
         }
     };
+
     const { open, selectedFilm, loading, setLoading, handleOpen, handleClose } = useModalWithTrailer();
 
     return (
         <div className="layout-padding relative features-film">
-            <div className="grid md:grid-cols-2 grid-cols-1 items-center">
+            <div className="grid md:grid-cols-2 grid-cols-1 items-center ">
                 <div className="title t items-start">
                     <i className="fa-solid fa-ticket"></i>
-                    <p>Khám phá phim mới mỗi ngày</p>
+                    <p className="">Khám phá phim mới mỗi ngày</p>
                     <h3>Phim nổi bật</h3>
                 </div>
                 <div>
-                    <p>Đón xem những phim mới hàng đầu đến từ nhiều quốc gia khác nhau.</p>
+                    <p className="md:text-lg text-base ">Đón xem những phim mới hàng đầu đến từ nhiều quốc gia khác nhau.</p>
                 </div>
             </div>
 
             {topFilm && topFilm.length > 0 ? (
-                <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-10   ">
+                <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-10  ">
                     {[...topFilm].slice(0, 3).map((top) => (
                         <div className="features-film-item relative" key={top.maPhim}>
-                            <div className="features-film-item-img  relative h-full">
+                            <div className="features-film-item-img  relative ">
                                 <Link to={`detail-film/${top.maPhim}`}>
-                                    <img src={top.hinhAnh} alt="Ảnh phim" className="h-full" />
+                                    <img src={top.hinhAnh} alt="Ảnh phim" className="w-full" />
                                 </Link>
                                 <div className="features-film-item-content rounded-lg bg-white px-7 py-4 absolute -bottom-10 left-1/2 -translate-x-1/2 w-[90%] flex flex-col gap-3">
                                     <div>
@@ -81,6 +82,7 @@ export default function FeaturedMovies({ listFilm }) {
                                             hoverBgColor="var(--orange)"
                                             hoverColor="white"
                                             height="40px"
+                                            onClick={() => navigate(`/detail-film/${top.maPhim}`)}
                                         >
                                             Đặt vé ngay
                                         </Button>

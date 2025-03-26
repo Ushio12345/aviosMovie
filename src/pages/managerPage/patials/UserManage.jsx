@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { deleteUser, getAllUser } from "../services/UserServices";
 import { showAlert, showConfirmAlert } from "../../../components/Aleart/Aleart";
-import { Add, ArrowDownward, ArrowUpward, Edit, FilterAltOff, ManageAccounts, People, PersonRemove, PlusOne } from "@mui/icons-material";
+import { Add, ArrowDownward, ArrowUpward, Edit, FilterAltOff, ManageAccounts, People, PersonOff, PersonRemove, PlusOne } from "@mui/icons-material";
 import { TablePagination } from "@mui/material";
 import useInput from "../../../hooks/useInput";
 
@@ -75,7 +75,7 @@ export default function UserManage() {
             return (
                 <tr>
                     <td colSpan="6" className="text-center py-4 text-gray-500">
-                        Hiện không có người dùng nào.
+                        <PersonOff /> Hiện không có người dùng nào.
                     </td>
                 </tr>
             );
