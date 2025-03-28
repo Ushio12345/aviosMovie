@@ -31,14 +31,14 @@ export default function MainRoutes() {
         <Routes>
             <Route element={<PersistLogin />}>
                 {/* auth page */}
-                {/* <Route path="*" element={<Page404 />} /> */}
+                <Route path="*" element={<Page404 />} />
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 {/*  */}
 
                 {/* home page */}
                 <Route path="/" element={<HomeLayout />}>
-                    <Route path="*" element={<Page404 />} />
+                    {/* <Route path="*" element={<Page404 />} /> */}
                     <Route index element={<HomePage />} />
                     <Route path="top-film" element={<TopFlim />}></Route>
                     {/* <Route path="upcoming-film" element={<UpComingFilm />}></Route> */}

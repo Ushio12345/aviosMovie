@@ -1,38 +1,35 @@
 import React from "react";
-import Page404Img from "../../assets/images/Illustration.png";
-
+import Page404Img from "../../assets/images/4041.png";
+import "./Page404.scss";
 import { GoArrowRight } from "react-icons/go";
 import { ArrowBack, ArrowLeft, ChevronLeft } from "@mui/icons-material";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import Button from "../../components/button/Button";
+
 export default function Page404() {
+    const navigate = useNavigate();
     return (
-        <div className=" pageError  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  layout">
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-6 items-center">
-                <div className="col-span-1 flex flex-col gap-4">
-                    <div className="flex flex-col gap-4">
-                        <h2 className="text-4xl">Opps! Không tìm thấy trang</h2>
-                        <p className="">Có lỗi xảy ra. Có vẻ như liên kết bị hỏng hoặc trang đã bị xóa.</p>
-                    </div>
-                    <div className="flex w-f">
-                        <div className="">
-                            <button className=" py-3 px-1 bg-green-500 hover:bg-green-800 hover:text-white text-white font-bold  rounded inline-flex items-center w-full">
-                                <Link to="/" className="flex items-center text-white ">
-                                    <ArrowBack /> Trang chủ
-                                </Link>
-                            </button>
-                        </div>
-                        <div>
-                            <button className="py-3 px-1 mx-10 text-black outline outline-red-100-500 hover:bg-blue-600 hover:text-white  font-bold  rounded inline-flex items-center">
-                                <Link to="/login" className="flex items-center ">
-                                    Trang đăng nhập <GoArrowRight className="ml-3" />{" "}
-                                </Link>
-                            </button>
-                        </div>
-                    </div>
+        <div className=" pageError relative">
+            <div className="layout flex flex-col justify-center items-center gap-10   absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                <div className="w-1/2 m-auto">
+                    <img src={Page404Img}></img>
                 </div>
-                <div className="col-span-2">
-                    {" "}
-                    <img src={Page404Img} alt="Error Page Image" />
+                <div className="space-y-5 text-center">
+                    <h3 className="lg:text-2xl md:text-xl text-lg font-extrabold">Rất tiếc, chúng tôi không tìm thấy trang đó!</h3>
+                    <p>Trang bạn đang tìm kiếm không tồn tại.</p>
+                </div>
+
+                <div className="">
+                    <Button
+                        bgColor="var(--orange)"
+                        color="white"
+                        hoverOutline="2px solid var(--orange)"
+                        width="150px"
+                        height="50px"
+                        onClick={() => navigate("/")}
+                    >
+                        <ArrowBack /> Trở về trang chủ
+                    </Button>
                 </div>
             </div>
         </div>

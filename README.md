@@ -52,7 +52,7 @@ npm install
 
 -   Tài khoản dùng thử của trang Manager:
     -   Tên tài khoản: 12312214123123
-        -   Mật khẩu8386142
+    -       Mật khẩu8386142
 
 1. Deploy
    https://ushio12345.github.io/aviosMovie/
