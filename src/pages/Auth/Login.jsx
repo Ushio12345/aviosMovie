@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Login.scss";
 import { validateForm } from "./schema/ValidateForm";
 import { login } from "./services/LoginService";
